@@ -5,6 +5,7 @@
     <a class="nav__item" href="/shop">Shop</a>
     <a class="nav__item" href="/login">Login</a>
     <a class="nav__item" href="/services">Services</a>
+    <a class="nav__item" href="/cart">Cart</a>
   </header>
 </template>
 <script>

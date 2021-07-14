@@ -19,6 +19,8 @@ import './css/style.css'
 import Navigation from './components/Navigation'
 import PageHeader from './components/PageHeader'
 import Services from './pages/services'
+import Product from './pages/Product'
+import Cart from './pages/Cart'
 
 import vSelect from 'vue-select';
 
@@ -31,14 +33,19 @@ Vue.component('AboutUs', AboutUs);
 Vue.component('Shop', Shop);
 Vue.component('Navigation', Navigation)
 Vue.component('Services', Services)
+Vue.component('Product', Product)
 Vue.use(VueRouter)
 Vue.component('PageHeader', PageHeader)
+Vue.component('Cart', PageHeader)
 
 const router = new VueRouter({
   mode: 'history',
   routes: [
     {
       path: '/shop', component: Shop,
+    },
+    {
+      path: '/shop/:id', component: Product,
     },
     {
       path: '/aboutus', component: AboutUs,
@@ -49,6 +56,9 @@ const router = new VueRouter({
     },
     {
       path: '/services', component: Services
+    },
+    {
+      path: '/cart', component: Cart,
     },
   ]
 })
@@ -64,5 +74,46 @@ new Vue({
   router,
   el: '#app',
   components: { App },
-  template: '<App/>'
+  template: '<App/>',
+  data: {
+    products: [
+      {
+        id: 123,
+        title: "Pepperoni Pizza",
+        price: 24.99,
+        discount: 5,
+        image: "image1.jpg",
+      },
+      {
+        id: 234,
+        title: "Baked Pancakes",
+        price: 44.89,
+        discount: 3,
+        image: "image1.jpg",
+      },
+      {
+        id: 345,
+        title: "Avocado",
+        price: 20.0,
+        image: "image1.jpg",
+      },
+      {
+        id: 456,
+        title: "Bunch of Orange",
+        price: 29.99,
+        image: "image1.jpg",
+      },
+    ],
+    cart: []
+  },
+  mounted() {
+    if (localStorage.cart) {
+      this.cart = JSON.parse(localStorage.cart);
+    }
+  },
+  watch: {
+    cart(addCart) {
+      localStorage.cart = JSON.stringify(addCart);
+    }
+  }
 })

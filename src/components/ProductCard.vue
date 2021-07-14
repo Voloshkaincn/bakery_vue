@@ -5,9 +5,9 @@
         :src="require('./../assets/image/' + product.image)"
         :alt="product.title"
       />
-      <div class="card__name text-center mt-2 mb-1">
+      <a :href="'/shop/' + product.id" class="card__name text-center mt-2 mb-1">
         {{ product.title }}
-      </div>
+      </a>
       <div class="price">
         <!-- <span class="price_new">{{ product }}</span> -->
         <span class="price_old" v-if="product.sale">{{ product.price }}</span>
@@ -29,7 +29,8 @@ export default {
   props: ["product"],
   methods: {
     addToCart(product) {
-      this.$emit("toCart", product);
+      this.$root.cart.push(product);
+      console.log(this.$root.cart);      
     },
   },
 };
