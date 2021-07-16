@@ -1,6 +1,12 @@
 <template>
   <div id="app">
     <PageHeader></PageHeader>
+
+    <div class="test">
+      {{ $store.state.count }}
+      <button @click="$store.commit('increment')">increment</button>
+    </div>
+
     <router-view />
 
     <slider />
@@ -77,12 +83,18 @@ export default {
 };
 </script>
 <style lang="scss">
+$var2: green;
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
   margin-top: 60px;
+
+}
+.test{
+  padding: 30px;
+  border: 1px solid #000;
+  margin: 50px;
 }
 </style>

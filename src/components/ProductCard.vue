@@ -18,7 +18,7 @@
           class="w-100 btn btn-primary"
           @click="addToCart(product)"
         >
-          Primary
+          Add to CART
         </button>
       </div>
     </div>
@@ -29,8 +29,7 @@ export default {
   props: ["product"],
   methods: {
     addToCart(product) {
-      this.$root.cart.push(product);
-      console.log(this.$root.cart);      
+      this.$store.dispatch('ADD_TO_CART', product)     
     },
   },
 };
